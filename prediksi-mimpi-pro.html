@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Prediksi Mistik · Royal Luxury Edition</title>
+<meta name="theme-color" content="#e9c46a">
+<meta name="description" content="Aplikasi prediksi mistik dengan analisa Taysen, Colok Bebas, AI 4 digit, dan BBFS 8 digit">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mistik">
+<style>
+:root{
+  --bg:#05030b;--card:rgba(20,14,38,0.72);
+  --gold:#e9c46a;--gold-b:#ffe08a;--gold-d:#a67c1a;
+  --violet:#a78bfa;--purple:#7c3aed;
+  --emerald:#34d399;--rose:#fb7185;
+  --fg:#f5f0ff;--muted:#8e7fb0;
+  --line:rgba(167,139,250,0.18);--line-gold:rgba(233,196,106,0.30);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{
+  font-family:"Segoe UI",Constantia,serif;color:var(--fg);min-height:100vh;
+  padding:18px 16px 90px;
+  background:
+    radial-gradient(ellipse 70% 45% at 12% 0%,rgba(124,58,237,.30) 0%,transparent 60%),
+    radial-gradient(ellipse 55% 40% at 92% 10%,rgba(233,196,106,.10) 0%,transparent 55%),
+    radial-gradient(ellipse 90% 55% at 50% 108%,rgba(52,211,153,.10) 0%,transparent 60%),
+    linear-gradient(180deg,#05030b 0%,#0a0516 45%,#05030b 100%);
+  background-attachment:fixed;position:relative;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%,rgba(233,196,106,.95),transparent),
+    radial-gradient(1px 1px at 26% 60%,rgba(255,255,255,.65),transparent),
+    radial-gradient(1.6px 1.6px at 47% 22%,rgba(167,139,250,.9),transparent),
+    radial-gradient(1px 1px at 66% 78%,rgba(52,211,153,.8),transparent),
+    radial-gradient(1px 1px at 82% 40%,rgba(255,255,255,.55),transparent),
+    radial-gradient(1.6px 1.6px at 93% 12%,rgba(233,196,106,.85),transparent),
+    radial-gradient(1px 1px at 34% 88%,rgba(167,139,250,.7),transparent),
+    radial-gradient(1px 1px at 6% 50%,rgba(255,255,255,.5),transparent);
+  animation:tw 7s ease-in-out infinite;
+}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 50% 40%,transparent 45%,rgba(0,0,0,.55) 100%)}
+@keyframes tw{0%,100%{opacity:.7;filter:brightness(1)}50%{opacity:1;filter:brightness(1.4)}}
+body>*{position:relative;z-index:1}
+
+.header{text-align:center;padding:10px 0 20px;position:relative;margin-bottom:10px}
+.header::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-d),var(--gold),var(--gold-d),transparent);opacity:.7}
+h1{margin:0;font-weight:400;font-size:26px;letter-spacing:4px;font-family:'Times New Roman',serif;
+  text-transform:uppercase;
+  background:linear-gradient(100deg,var(--gold-b),var(--gold) 30%,#fff6d8 50%,var(--gold) 70%,var(--violet));
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:gshift 9s ease infinite;
+  filter:drop-shadow(0 0 20px rgba(233,196,106,.35))}
+@keyframes gshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.sub{font-size:11px;color:var(--violet);letter-spacing:3px;margin-top:6px;font-style:italic;opacity:.85}
+
+.tabs{display:flex;gap:6px;padding:6px;margin:0 auto 18px;max-width:640px;
+  background:rgba(6,3,14,0.82);border:1px solid var(--line);border-radius:14px}
+.tab{flex:1;padding:12px 6px;border-radius:9px;background:transparent;color:var(--muted);
+  border:1px solid transparent;font-size:11px;letter-spacing:1.4px;font-weight:800;
+  cursor:pointer;transition:all .28s;text-transform:uppercase;font-family:inherit}
+.tab:hover{color:var(--fg);background:rgba(124,58,237,.14)}
+.tab.active{background:linear-gradient(135deg,rgba(233,196,106,.22),rgba(124,58,237,.24));
+  color:var(--gold-b);border-color:var(--line-gold);
+  box-shadow:0 0 22px rgba(233,196,106,.22),inset 0 1px 0 rgba(255,255,255,.08);
+  text-shadow:0 0 12px rgba(233,196,106,.5)}
+
+.card{background:linear-gradient(155deg,rgba(24,14,48,0.88),rgba(8,4,16,0.94));
+  backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;
+  padding:18px 16px;margin-bottom:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6),inset 0 1px 0 rgba(167,139,250,.06);
+  position:relative;overflow:hidden}
+.card.gold{border-color:var(--line-gold);
+  box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 34px rgba(233,196,106,.10),inset 0 0 30px rgba(124,58,237,.04)}
+.card.gold::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+label{display:block;font-size:9.5px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:1.8px;margin-bottom:7px;font-weight:800}
+textarea,input,select{width:100%;padding:13px 14px;border-radius:11px;
+  border:1px solid var(--line);background:rgba(8,4,16,0.92);
+  color:var(--gold-b);font-family:'Courier New',monospace;font-size:14px;
+  outline:none;transition:all .25s;letter-spacing:.5px;
+  box-shadow:inset 0 2px 12px rgba(0,0,0,.85)}
+input[type="color"]{padding:4px;height:44px;cursor:pointer}
+select{font-family:inherit;font-weight:600;font-size:13px;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),
+    linear-gradient(135deg,var(--gold) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:36px}
+textarea:focus,input:focus,select:focus{border-color:var(--line-gold);
+  box-shadow:inset 0 2px 12px rgba(0,0,0,.85),0 0 0 3px rgba(233,196,106,.12),0 0 24px rgba(233,196,106,.18);
+  color:var(--gold-b)}
+textarea{height:150px;resize:none}
+
+.btn{border:none;padding:15px;border-radius:11px;cursor:pointer;width:100%;
+  font-family:inherit;font-weight:800;font-size:13px;letter-spacing:1.4px;
+  text-transform:uppercase;transition:transform .12s,box-shadow .25s;
+  position:relative;overflow:hidden}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:linear-gradient(135deg,var(--gold-b) 0%,var(--gold) 22%,var(--gold-d) 46%,var(--purple) 78%,var(--violet) 100%);
+  background-size:250% 250%;animation:bsh 6s ease infinite;
+  box-shadow:0 10px 34px rgba(233,196,106,.30),0 0 50px rgba(109,40,217,.28),inset 0 1px 0 rgba(255,255,255,.5);
+  color:#1c0f00;text-shadow:0 1px 0 rgba(255,255,255,.35);margin-top:12px}
+@keyframes bsh{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.btn-ghost{background:rgba(16,8,30,0.85);color:var(--gold);border:1px solid var(--line-gold);
+  font-size:11px;padding:11px;margin-top:8px}
+.btn-ghost:hover{background:rgba(233,196,106,.12);color:#fff}
+.btn-emerald{background:linear-gradient(135deg,#059669,#34d399);color:#001a10;
+  box-shadow:0 10px 30px rgba(52,211,153,.35),inset 0 1px 0 rgba(255,255,255,.4);margin-top:8px}
+
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:130px}
+
+.sec-title{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:2.6px;
+  text-transform:uppercase;color:var(--gold);margin:26px 0 14px;font-weight:800}
+.sec-title::before,.sec-title::after{content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line-gold),transparent)}
+.sec-title:first-child{margin-top:0}
+
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.src-card{background:linear-gradient(150deg,rgba(24,14,48,0.9),rgba(8,4,16,0.95));
+  border:1px solid var(--line-gold);border-radius:14px;padding:14px 15px;
+  position:relative;overflow:hidden;
+  box-shadow:0 14px 34px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04)}
+.src-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--gold-b),var(--gold),var(--purple));
+  border-radius:14px 0 0 14px;box-shadow:0 0 16px rgba(233,196,106,.5)}
+.src-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.src-label{font-size:10px;letter-spacing:2px;color:var(--violet);font-weight:800;text-transform:uppercase}
+.src-full{font-family:'Courier New',monospace;font-size:11px;color:var(--muted)}
+.src-ekor{font-family:'Courier New',monospace;font-size:30px;font-weight:900;letter-spacing:3px;
+  background:linear-gradient(135deg,var(--gold-b),var(--gold),#fff6d8);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 12px rgba(233,196,106,.4))}
+.src-sub{font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:.5px}
+.src-row{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap}
+.src-row-tag{font-size:9.5px;color:var(--muted);letter-spacing:1px;font-weight:800;
+  text-transform:uppercase;min-width:56px}
+.chip{font-family:'Courier New',monospace;font-size:12px;font-weight:800;
+  padding:3px 8px;border-radius:6px;background:rgba(8,4,16,0.92);
+  border:1px solid var(--line);color:var(--fg);letter-spacing:1px}
+.chip.gold{border-color:var(--line-gold);color:var(--gold-b);background:rgba(233,196,106,.08)}
+.chip.green{border-color:rgba(52,211,153,.4);color:#6ee7b7;background:rgba(52,211,153,.07)}
+
+.pred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.pred-box{background:linear-gradient(155deg,rgba(24,14,48,0.94),rgba(7,3,14,0.97));
+  border:1px solid var(--line-gold);border-radius:16px;padding:18px 14px;text-align:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,.7),0 0 30px rgba(233,196,106,.08),inset 0 0 30px rgba(124,58,237,.05)}
+.pred-box::before{content:'';position:absolute;top:0;left:14%;right:14%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pred-label{font-size:10px;letter-spacing:2.4px;color:var(--muted);text-transform:uppercase;
+  font-weight:800;margin-bottom:10px;position:relative;z-index:1}
+.pred-value{font-family:'Courier New',monospace;font-weight:900;position:relative;z-index:1;
+  letter-spacing:6px;line-height:1.1}
+.pred-box.cb .pred-value{font-size:64px;color:var(--gold-b);
+  text-shadow:0 0 26px rgba(233,196,106,.75),0 0 60px rgba(233,196,106,.4)}
+.pred-box.cm .pred-value{font-size:52px;
+  background:linear-gradient(135deg,var(--gold-b),#fff6d8,var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 18px rgba(233,196,106,.5))}
+.pred-box.ai{border-color:rgba(52,211,153,.42)}
+.pred-box.ai::before{background:linear-gradient(90deg,transparent,var(--emerald),transparent)}
+.pred-box.ai .pred-value{font-size:38px;color:var(--emerald);
+  text-shadow:0 0 22px rgba(52,211,153,.85),0 0 50px rgba(52,211,153,.4)}
+.pred-box.bbfs{border-color:rgba(167,139,250,.42)}
+.pred-box.bbfs::before{background:linear-gradient(90deg,transparent,var(--violet),transparent)}
+.pred-box.bbfs .pred-value{font-size:24px;letter-spacing:5px;
+  background:linear-gradient(120deg,var(--gold-b),#fff6d8,var(--violet),var(--emerald),var(--gold-b));
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:gshift 7s ease infinite;
+  filter:drop-shadow(0 0 20px rgba(233,196,106,.5))}
+
+.freq-list{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.freq-row{display:flex;align-items:center;gap:10px}
+.freq-d{width:34px;height:34px;flex-shrink:0;display:grid;place-items:center;
+  border-radius:9px;font-family:'Courier New',monospace;font-weight:900;font-size:15px;
+  background:rgba(8,4,16,0.95);border:1px solid var(--line);color:var(--fg)}
+.freq-d.hot{border-color:var(--line-gold);color:var(--gold-b);box-shadow:0 0 14px rgba(233,196,106,.4);
+  background:linear-gradient(140deg,rgba(233,196,106,.16),rgba(124,58,237,.10))}
+.freq-d.mid{border-color:rgba(52,211,153,.45);color:#6ee7b7;box-shadow:0 0 12px rgba(52,211,153,.3)}
+.freq-d.low{border-color:rgba(251,113,133,.35);color:#fda4af;opacity:.65}
+.freq-track{flex:1;height:12px;border-radius:7px;background:rgba(8,4,16,0.92);
+  border:1px solid rgba(167,139,250,.14);overflow:hidden}
+.freq-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--purple),var(--gold));
+  transition:width .7s cubic-bezier(.22,1,.36,1)}
+.freq-fill.hot{background:linear-gradient(90deg,var(--gold-d),var(--gold-b))}
+.freq-fill.mid{background:linear-gradient(90deg,#0f766e,var(--emerald))}
+.freq-fill.low{background:linear-gradient(90deg,#831843,var(--rose))}
+.freq-val{width:38px;text-align:right;font-family:'Courier New',monospace;font-size:12px;
+  font-weight:800;color:var(--gold);flex-shrink:0}
+.freq-tag{width:56px;flex-shrink:0;text-align:center;font-size:9px;font-weight:900;
+  padding:3px 0;border-radius:5px;border:1px solid var(--line);color:var(--muted);
+  letter-spacing:1px}
+.freq-tag.cb{border-color:var(--line-gold);color:var(--gold-b);background:rgba(233,196,106,.1)}
+.freq-tag.cm{border-color:var(--line-gold);color:var(--gold);background:rgba(233,196,106,.08)}
+.freq-tag.ai{border-color:rgba(52,211,153,.45);color:var(--emerald);background:rgba(52,211,153,.08)}
+.freq-tag.bbfs{border-color:rgba(167,139,250,.45);color:var(--violet);background:rgba(167,139,250,.08)}
+.freq-tag.low{border-color:rgba(251,113,133,.35);color:#fb7185;background:rgba(251,113,133,.06)}
+
+.result-card{background:linear-gradient(150deg,rgba(24,14,48,0.92),rgba(8,4,16,0.96));
+  border:1px solid var(--line-gold);border-radius:16px;overflow:hidden;margin-top:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,.7)}
+.rc-head{background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(233,196,106,.18));
+  padding:16px 18px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--line-gold)}
+.rc-head-title{font-size:12px;letter-spacing:2.4px;color:var(--gold-b);font-weight:800;text-transform:uppercase}
+.rc-head-num{font-family:'Courier New',monospace;font-size:32px;font-weight:900;letter-spacing:4px;
+  background:linear-gradient(135deg,var(--gold-b),#fff6d8,var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 14px rgba(233,196,106,.5))}
+.taysen-row{display:flex;justify-content:center;gap:10px;padding:12px;
+  background:rgba(8,4,16,0.6);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.taysen-row span{font-family:'Courier New',monospace;font-weight:900;font-size:15px;
+  padding:6px 14px;border-radius:8px;
+  background:linear-gradient(140deg,rgba(233,196,106,.16),rgba(124,58,237,.10));
+  border:1px solid var(--line-gold);color:var(--gold-b);letter-spacing:2px}
+.rc-body{padding:14px 18px;border-bottom:1px solid rgba(167,139,250,.08)}
+.rc-body:last-child{border-bottom:none}
+.rc-sec{font-size:9.5px;color:var(--violet);font-weight:800;letter-spacing:1.8px;
+  text-transform:uppercase;margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:11.5px;padding:4px 11px;border-radius:14px;font-weight:700;
+  background:rgba(233,196,106,.10);color:var(--gold-b);border:1px solid var(--line-gold)}
+.rc-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;gap:10px}
+.rc-lbl{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:1px}
+.rc-val{font-size:13px;font-weight:800;color:var(--fg);text-align:right}
+.rc-val.gold{color:var(--gold-b);font-family:'Courier New',monospace;font-size:16px;letter-spacing:2px}
+.rc-val.green{color:var(--emerald);font-family:'Courier New',monospace;font-size:16px;letter-spacing:2px}
+
+.no-result{background:linear-gradient(135deg,rgba(251,113,133,.2),rgba(124,58,237,.2));
+  color:#fff;padding:16px;border-radius:12px;text-align:center;font-weight:800;
+  border:1px solid rgba(251,113,133,.4);letter-spacing:.5px}
+
+.icon-preview-wrap{text-align:center;margin:16px 0}
+#iconPreview{border-radius:24px;box-shadow:0 12px 34px rgba(0,0,0,.6),0 0 24px rgba(233,196,106,.35);
+  border:2px solid var(--line-gold)}
+.steps{font-family:'Courier New',monospace;font-size:12.5px;line-height:2;
+  color:var(--fg);background:rgba(8,4,16,0.6);border:1px dashed var(--line-gold);
+  border-radius:10px;padding:14px 16px;margin-top:6px}
+.steps b{color:var(--gold-b)}
+.steps .num{display:inline-block;width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--purple));color:#000;
+  font-weight:900;font-size:11px;text-align:center;line-height:20px;margin-right:8px}
+.file-list{font-family:'Courier New',monospace;font-size:11.5px;line-height:1.9;
+  color:var(--muted);background:rgba(8,4,16,0.6);border:1px solid var(--line);
+  border-radius:10px;padding:12px 14px;margin-top:8px}
+.file-list b{color:var(--gold-b)}
+
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(22px);
+  background:linear-gradient(135deg,var(--gold),var(--purple));color:#fff;
+  padding:13px 26px;border-radius:50px;font-size:12.5px;font-weight:900;letter-spacing:.6px;
+  opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 14px 44px rgba(109,40,217,.6),0 0 66px rgba(233,196,106,.3);
+  z-index:999;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:480px){
+  h1{font-size:20px;letter-spacing:2.6px}
+  .pred-box.cb .pred-value{font-size:52px}
+  .pred-box.cm .pred-value{font-size:42px}
+  .pred-box.ai .pred-value{font-size:30px}
+  .pred-box.bbfs .pred-value{font-size:20px;letter-spacing:4px}
+  .src-ekor{font-size:26px}
+  .freq-tag{width:48px;font-size:8px}
+  .tab{font-size:9.5px;letter-spacing:.6px;padding:10px 2px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Prediksi Mistik</h1>
+  <div class="sub">✦ Royal Luxury Edition ✦</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="prediksi">🎯 Prediksi</button>
+  <button class="tab" data-tab="mimpi">📖 Buku Mimpi</button>
+  <button class="tab" data-tab="pwa">📱 PWA</button>
+</div>
+
+<div id="tab-prediksi">
+  <div class="card gold">
+    <label>📥 Input Result · Minimal 7 Baris</label>
+    <textarea id="inputResult" placeholder="Tempel result di sini, 1 baris = 1 result&#10;Contoh:&#10;2066&#10;8172&#10;4679&#10;0188&#10;6358&#10;2079&#10;3951"></textarea>
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>📅 Urutan Input</label>
+        <select id="orderSel">
+          <option value="top" selected>Atas = R1 (terbaru di atas)</option>
+          <option value="bottom">Bawah = R1 (terbaru di bawah)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="hitungPrediksi()">✨ HITUNG PREDIKSI</button>
+    <button class="btn btn-ghost" onclick="contohIsi()">📋 Isi Contoh Data</button>
+  </div>
+
+  <div id="prediksiOutput" style="display:none">
+    <div class="sec-title">📊 Sumber Data · R1 · R2 · R7</div>
+    <div class="src-grid" id="srcGrid"></div>
+
+    <div class="sec-title">🎯 Hasil Prediksi</div>
+    <div class="pred-grid">
+      <div class="pred-box cb"><div class="pred-label">💰 Colok Bebas</div><div class="pred-value" id="outCB">-</div></div>
+      <div class="pred-box cm"><div class="pred-label">💎 Colok Makau</div><div class="pred-value" id="outCM">-</div></div>
+      <div class="pred-box ai"><div class="pred-label">🎯 AI 4 Digit</div><div class="pred-value" id="outAI">-</div></div>
+      <div class="pred-box bbfs"><div class="pred-label">🎲 BBFS 8 Digit</div><div class="pred-value" id="outBBFS">-</div></div>
+    </div>
+
+    <div class="sec-title">📈 Frekuensi Digit</div>
+    <div class="card"><div class="freq-list" id="freqList"></div></div>
+
+    <button class="btn btn-ghost" onclick="copyHasil()">📋 Salin Hasil Prediksi</button>
+  </div>
+</div>
+
+<div id="tab-mimpi" style="display:none">
+  <div class="card gold">
+    <label>🔍 Cari Angka (00-99) atau Nama</label>
+    <input type="text" id="searchInput" placeholder="Contoh: 51 atau kerbau, nyiur, semut..." onkeypress="if(event.key==='Enter') cariData()">
+    <button class="btn btn-primary" onclick="cariData()">CARI 🔍</button>
+  </div>
+  <div id="resultBox"></div>
+</div>
+
+<div id="tab-pwa" style="display:none">
+  <div class="card gold">
+    <div class="sec-title">📱 Info Aplikasi</div>
+
+    <label>📛 Nama Aplikasi</label>
+    <input type="text" id="pwaName" value="Prediksi Mistik" maxlength="40">
+
+    <label style="margin-top:12px">⚡ Nama Singkat (≤12 karakter)</label>
+    <input type="text" id="pwaShort" value="Mistik" maxlength="12">
+
+    <label style="margin-top:12px">🔤 Huruf / Emoji Ikon</label>
+    <input type="text" id="pwaLetter" value="🔮" maxlength="3">
+
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>🎨 Warna Tema</label>
+        <input type="color" id="pwaTheme" value="#e9c46a">
+      </div>
+      <div>
+        <label>🌌 Warna Background</label>
+        <input type="color" id="pwaBg" value="#0a0516">
+      </div>
+    </div>
+
+    <div class="icon-preview-wrap">
+      <div class="sub" style="margin-bottom:8px">PREVIEW IKON</div>
+      <canvas id="iconPreview" width="140" height="140"></canvas>
+    </div>
+
+    <div class="sec-title" style="margin-top:24px">📥 Download Icon (WAJIB)</div>
+    <div style="font-size:11.5px;color:var(--muted);text-align:center;margin-bottom:10px;line-height:1.6">
+      Download 2 file icon ini, taruh di folder yang sama dengan <b style="color:var(--gold-b)">index.html</b>
+    </div>
+    <button class="btn btn-emerald" onclick="downloadFile('icon192')">🖼️ Download icon-192.png</button>
+    <button class="btn btn-emerald" onclick="downloadFile('icon512')">🖼️ Download icon-512.png</button>
+    <button class="btn btn-ghost" onclick="downloadFile('manifest')">📋 Download manifest.json</button>
+    <button class="btn btn-ghost" onclick="downloadFile('sw')">⚙️ Download sw.js</button>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">📦 Isi Folder Deploy</div>
+    <div class="file-list">
+      <b>index.html</b> — aplikasi lengkap<br>
+      <b>manifest.json</b> — metadata PWA<br>
+      <b>sw.js</b> — service worker (offline)<br>
+      <b>icon-192.png</b> — ikon 192×192<br>
+      <b>icon-512.png</b> — ikon 512×512
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">🚀 Cara Jadi APK</div>
+    <div class="steps">
+      <div><span class="num">1</span>Download 4 file di atas (icon 192, icon 512, manifest, sw)</div>
+      <div><span class="num">2</span>Taruh SEMUA file + index.html dalam 1 folder</div>
+      <div><span class="num">3</span>Buka <b>app.netlify.com/drop</b></div>
+      <div><span class="num">4</span>Drag <b>SEMUA 5 FILE</b> sekaligus ke Netlify</div>
+      <div><span class="num">5</span>Dapat URL <b>.netlify.app</b> → buka di browser (test dulu)</div>
+      <div><span class="num">6</span>Paste URL ke <b>pwabuilder.com</b> → Android → APK 🎉</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">💡 Alternatif Tanpa APK</div>
+    <div class="steps" style="font-size:11.5px">
+      <b>Add to Home Screen:</b><br>
+      Buka URL di Chrome Android → menu ⋮ → "Install app" → ikon muncul di HP seperti APK native. Selesai dalam 30 detik.
+    </div>
+  </div>
+</div>
+
+<div id="toast">✓ Selesai!</div>
+
+<script>
+const DB={
+"00":{taysen:["97","48","64","98"],nama:["PENYAIR","TAPIR","KUPAS KELAPA","SEMPRITAN","TANGGALAN","PINDAH RUMAH","BULAN","KUMBO KARNO"],pelarian:{angka:"67",nama:["KERBAU","JENDERAL"]},erek1:{angka3d:"146",angka2d:"98",nama:"PEDAGANG"},erek2:{angka3d:"187",angka2d:"198",nama:"KELAPA MUDA"},kodeAlam:"LAMPU TEPLOK MENYALA",pohon:"NYIUR",gayaBaru:{angka:"10",nama:["SEMUT","TUAN TANAH"]}},
+"01":{taysen:["05","95","12","45"],nama:["SETAN","IKAN BANDENG","JUAL IKAN","OBOR","JAMBU MENTE","TANGAN","BETARA KALA"],pelarian:{angka:"95",nama:["BURUNG PIPIT","GEROMBOLAN PERAMPOK"]},erek1:{angka3d:"74",angka2d:"01",nama:"TENTARA"},erek2:{angka3d:"144",angka2d:"101",nama:"SILAT"},kodeAlam:"CICAK KAWIN",pohon:"LANGSAT",gayaBaru:{angka:"99",nama:["NAGA","ABDI RAJA"]}},
+"02":{taysen:["16","53","09","35"],nama:["SARJANA","BEKICOT","LOMPAT TINGGI","WORTEL","JANGKAR","SANDAL","BETARA BROMO"],pelarian:{angka:"79",nama:["KUCING","KAS UANG"]},erek1:{angka3d:"163",angka2d:"02",nama:"ORANG BARAT"},erek2:{angka3d:"73",angka2d:"102",nama:"MUCIKARI"},kodeAlam:"KODOK MASUK DALAM RUMAH",pohon:"JAGUNG",gayaBaru:{angka:"77",nama:["SINGA","KEPALA RAMPOK"]}},
+"03":{taysen:["32","52","85","25"],nama:["ORANG MATI","ANGSA","LOMPAT GALAH","SAWI","KAKI","CEMBURU","SUBALI"],pelarian:{angka:"46",nama:["KUPU-KUPU","PELACUR TINGGI"]},erek1:{angka3d:"38",angka2d:"03",nama:"ORANG DAYAK"},erek2:{angka3d:"122",angka2d:"103",nama:"KEPALA POLISI"},kodeAlam:"KUPU-KUPU MASUK DALAM RUMAH MALAM HARI",pohon:"NIPAH",gayaBaru:{angka:"28",nama:["BADAK","BRANDAL"]}},
+"04":{taysen:["12","65","05","15"],nama:["KWAN IM","MERAK","LOMPAT JAUH","KANGKUNG","PETAI","BALON","BACA BUKU","DEWI RATIH"],pelarian:{angka:"52",nama:["KUTILANG","SENIMAN"]},erek1:{angka3d:"152",angka2d:"04",nama:"HIPNOTIS"},erek2:{angka3d:"62",angka2d:"104",nama:"ANGGAR"},kodeAlam:"ORANG GILA MENGAMUK DI JALAN",pohon:"JERUK BALI",gayaBaru:{angka:"88",nama:["RAJAWALI","MENANTU RAJA"]}},
+"05":{taysen:["01","89","10","39"],nama:["KEPALA RAMPOK","SINGA","JEMUR BAJU","LONCAT INDAH","KAYU MANIS","MERICA","KERETA API","GARU LANGIT"],pelarian:{angka:"17",nama:["BURUNG MURAI","UNTUNG BESAR"]},erek1:{angka3d:"119",angka2d:"05",nama:"TUKANG SAPU"},erek2:{angka3d:"88",angka2d:"105",nama:"PEMAHAT"},kodeAlam:"BURUNG ELANG TERBANG",pohon:"DURIAN",gayaBaru:{angka:"32",nama:["ANGSA","ORANG MATI"]}},
+"06":{taysen:["20","91","51","41"],nama:["DEWI BULAN","KELINCI","BANTUAN","RENANG","KAPAS","BONEKA","DAUN TEH","DEWI SRI"],pelarian:{angka:"64",nama:["NAGA","RAJA"]},erek1:{angka3d:"113",angka2d:"06",nama:"PENJUAL SAYUR"},erek2:{angka3d:"76",angka2d:"106",nama:"PELUKIS"},kodeAlam:"ANJING MELOLONG DI MALAM HARI",pohon:"MANGGIS",gayaBaru:{angka:"85",nama:["MACAN","MALING KECIL"]}},
+"07":{taysen:["24","58","57","08"],nama:["PELAYAN","BABI","KAPAL KERUK","ARANG","PERAHU LAYAR","BAWANG","PANCING","SULASTRI"],pelarian:{angka:"76",nama:["KERA","SETAN GANTUNG"]},erek1:{angka3d:"89",angka2d:"07",nama:"RONDA MALAM"},erek2:{angka3d:"147",angka2d:"107",nama:"SERDADU"},kodeAlam:"KUCING KAWIN",pohon:"KENARI",gayaBaru:{angka:"34",nama:["KODOK","SUMBER AIR"]}},
+"08":{taysen:["17","57","04","07"],nama:["MALING KECIL","MACAN","TERLANGGAR","MOTOR BOAT","KECUBUNG","DAUN SOP","PASAR","TUAN MARIAM"],pelarian:{angka:"20",nama:["ANJING","JENDERAL SERAKAH"]},erek1:{angka3d:"143",angka2d:"08",nama:"PRAMUGARI"},erek2:{angka3d:"142",angka2d:"108",nama:"AHLI NUJUM"},kodeAlam:"DENGAR SUARA BURUNG HANTU",pohon:"JATI",gayaBaru:{angka:"40",nama:["BELUT","JENDERAL"]}},
+"09":{taysen:["33","87","88","37"],nama:["JENDERAL","KERBAU","MENDAYUNG","KATES","PINANG","JALA","GADIS","BIMA"],pelarian:{angka:"24",nama:["IKAN PAUS","RAJA LAUT"]},erek1:{angka3d:"158",angka2d:"09",nama:"KOKI"},erek2:{angka3d:"176",angka2d:"109",nama:"SIBUNGKUK"},kodeAlam:"PERAMPOK DI TANGAN POLISI",pohon:"JAMBU",gayaBaru:{angka:"75",nama:["MUSANG","PENDETA"]}},
+"10":{taysen:["18","82","03","32"],nama:["KELENTENG","KELABANG","PANJAT POHON","MENYELAM","KELAPA","RILEKS","BIR","SEMBAHYANG PEMUJAAN"],pelarian:{angka:"36",nama:["MACAN","MALING"]},erek1:{angka3d:"28",angka2d:"10",nama:"POLWAN"},erek2:{angka3d:"169",angka2d:"110",nama:"SAKIT MATA"},kodeAlam:"TIKUS LEWAT DI DEPAN ANDA",pohon:"PEPAYA",gayaBaru:{angka:"00",nama:["KALKUN","BUDHA"]}},
+"11":{taysen:["15","07","00","27"],nama:["MENTRI SERAKAH","ANJING","LARI CEPAT","KIPAS","KERUDUNG","SAPU","JAMUR","SENGKUNI"],pelarian:{angka:"81",nama:["SINGA","KEPALA RAMPOK"]},erek1:{angka3d:"179",angka2d:"11",nama:"PENCOPET"},erek2:{angka3d:"140",angka2d:"111",nama:"BIDADARI"},kodeAlam:"ULAR LEWAT DI DEPAN ANDA",pohon:"GAMBAS",gayaBaru:{angka:"71",nama:["BEBEK","SUAMI ISTRI"]}},
+"12":{taysen:["04","69","17","19"],nama:["PENASIHAT PERANG","KUDA","LARI GAWANG","BOLA LAMPU","LUKU","LEMON","AIR PANAS","WIBISANA"],pelarian:{angka:"90",nama:["KELINCI","DEWI BULAN"]},erek1:{angka3d:"69",angka2d:"12",nama:"POLISI"},erek2:{angka3d:"150",angka2d:"112",nama:"HOSTES"},kodeAlam:"ORANG DIBUNUH MATI",pohon:"RANDU",gayaBaru:{angka:"16",nama:["TAWON","SAKIT KUDIS"]}},
+"13":{taysen:["14","79","07","29"],nama:["PENJAGA PINTU","GAJAH","SARANG BURUNG","LARI ESTAFET","KERIS","KIPAS ANGIN","CUCI RAMBUT","PRABU KESA"],pelarian:{angka:"21",nama:["KINJENG","PETI MATI"]},erek1:{angka3d:"36",angka2d:"13",nama:"INTEL WANITA"},erek2:{angka3d:"06",angka2d:"113",nama:"BASKET BALL"},kodeAlam:"ORANG MATI DITABRAK RODA EMPAT",pohon:"JERUK NIPIS",gayaBaru:{angka:"27",nama:["GAJAH","PENJAGA"]}},
+"14":{taysen:["13","96","08","46"],nama:["POTONG BABI","UNTA","TOLAK PELURU","JEMBATAN","KENTANG","SPET","BERAS","JAYA LANGSUAN"],pelarian:{angka:"59",nama:["KUDA","PENASEHAT PERANG"]},erek1:{angka3d:"65",angka2d:"14",nama:"ABANG BECAK"},erek2:{angka3d:"58",angka2d:"114",nama:"DAYANG"},kodeAlam:"ORANG TERBAKAR",pohon:"KELADI",gayaBaru:{angka:"39",nama:["KUDA","PEMIMPIN PERANG"]}},
+"15":{taysen:["11","54","00","04"],nama:["HAKIM","KARANTINA","TIKUS","LEMPAR MARTIL","KANTOR POS","SKRUP","LENGKUAS","KRESNA"],pelarian:{angka:"82",nama:["MERPATI","SEJODOH"]},erek1:{angka3d:"92",angka2d:"15",nama:"KERDIL"},erek2:{angka3d:"127",angka2d:"115",nama:"DOKTER GIGI"},kodeAlam:"PAKAI BAJU TERBALIK",pohon:"RUMBIA",gayaBaru:{angka:"26",nama:["KERBAU","JENDERAL"]}},
+"16":{taysen:["02","74","15","24"],nama:["SAKIT GUDIK","TAWON","LEMPAR CAKRAM","NANAS","SURAT","POHON PISANG","DUREN","JEMBAWAN"],pelarian:{angka:"48",nama:["CENDRAWASIH","PUTRI RAJA"]},erek1:{angka3d:"87",angka2d:"16",nama:"LEPRA"},erek2:{angka3d:"29",angka2d:"116",nama:"PETINJU"},kodeAlam:"BERKELAHI MAIN JUDI",pohon:"PISANG",gayaBaru:{angka:"77",nama:["KUPU-KUPU","PELACUR TINGGI"]}},
+"17":{taysen:["08","88","13","38"],nama:["PEMADAT","BANGAU","AREN","LEMPAR LEMBING","DURIAN","TELPON","API","BUTO TERONG"],pelarian:{angka:"05",nama:["MURAI","UNTUNG BESAR"]},erek1:{angka3d:"159",angka2d:"17",nama:"ANAK BRANDAL"},erek2:{angka3d:"45",angka2d:"117",nama:"KARATEKA"},kodeAlam:"LELAKI PAKAI ANTING-ANTING SEBELAH",pohon:"CABAI",gayaBaru:{angka:"25",nama:["LALAT","ISTRI SEJATI"]}},
+"18":{taysen:["10","78","01","28"],nama:["KAS UANG","PARANG","KUCING","POLO AIR","KANTOR POLISI","LOMBOK","JUAL ES","BISMA"],pelarian:{angka:"56",nama:["UDANG","KELAMIN"]},erek1:{angka3d:"178",angka2d:"18",nama:"DOKTORANDUS"},erek2:{angka3d:"63",angka2d:"118",nama:"SEPAK TAKRAW"},kodeAlam:"LISTRIK MATI DALAM PESTA",pohon:"AREN",gayaBaru:{angka:"68",nama:["BEKICOT","SARJANA"]}},
+"19":{taysen:["27","62","54","12"],nama:["PELACUR KELAS TINGGI","KUPU-KUPU","LOTRE","SEPAK BOLA","SRIKAYA","CABUT GIGI","BAN SEPEDA","BANOWATI"],pelarian:{angka:"45",nama:["BEKICOT","SARJANA"]},erek1:{angka3d:"138",angka2d:"19",nama:"LEMPAR BOLA"},erek2:{angka3d:"05",angka2d:"119",nama:"WARTAWATI"},kodeAlam:"KUDUK BERDIRI KETIKA BERJALAN MALAM HARI",pohon:"NANGKA",gayaBaru:{angka:"46",nama:["WALET","PELACUR TUA"]}},
+"20":{taysen:["06","72","19","22"],nama:["ISTRI SEJATI","LALAT","VOLLY BALL","BAN MOBIL","BERMESRAAN","PALU","KEDAI TUAK","SETIAWATI"],pelarian:{angka:"08",nama:["ANJING","JENDERAL SERAKAH"]},erek1:{angka3d:"44",angka2d:"20",nama:"SATPAM"},erek2:{angka3d:"182",angka2d:"120",nama:"PETRUK"},kodeAlam:"MUSANG LINTAS MALAM HARI",pohon:"DELIMA",gayaBaru:{angka:"50",nama:["TIKUS","AHLI NUJUM"]}},
+"21":{taysen:["22","93","55","43"],nama:["PELACUR UMUM","WALET","BULU TANGKIS","KAPAK","BAYAM","MEMOTRET","PERMEN","LESMANAWATI"],pelarian:{angka:"13",nama:["KINJENG","PETI MATI"]},erek1:{angka3d:"91",angka2d:"21",nama:"PERANTARA"},erek2:{angka3d:"136",angka2d:"121",nama:"PERENANG"},kodeAlam:"LIHAT BAN KENDARAAN PECAH",pohon:"BAMBU",gayaBaru:{angka:"51",nama:["IKAN MAS","NELAYAN"]}},
+"22":{taysen:["21","70","50","20"],nama:["PETI MATI","CAPUNG","TENIS","TERONG","BUAH KANA CINA","HARMONIKA","CUCI MUKA","SEMBADRA"],pelarian:{angka:"93",nama:["BERUANG","ORANG ESKIMO"]},erek1:{angka3d:"134",angka2d:"22",nama:"BABI HUTAN"},erek2:{angka3d:"103",angka2d:"122",nama:"KULIT HITAM"},kodeAlam:"CICAK MASUK DALAM TEMPAT GULA",pohon:"RIMBANG",gayaBaru:{angka:"72",nama:["KELABANG","KLENTENG"]}},
+"23":{taysen:["30","84","81","34"],nama:["SETAN GANTUNG","KERA","BASKET","PISANG","BEDAK","PIANO","POTONG AYAM","WILKAMPANA"],pelarian:{angka:"91",nama:["SERIGALA","SILUMAN AIR"]},erek1:{angka3d:"166",angka2d:"23",nama:"PUTRI AYU"},erek2:{angka3d:"40",angka2d:"123",nama:"POMPA BENSIN"},kodeAlam:"LEMBU MENGAMUK",pohon:"JERUK MANIS",gayaBaru:{angka:"53",nama:["KANCIL","PENIPU"]}},
+"24":{taysen:["07","66","14","16"],nama:["SUMBER AIR","KODOK","TENIS MEJA","WORTEL","KELENTANG","SIKAT GIGI","BERSOLEK","DEWA RUCI"],pelarian:{angka:"09",nama:["IKAN PAUS","RAJA LAUT"]},erek1:{angka3d:"42",angka2d:"24",nama:"IBU GURU"},erek2:{angka3d:"52",angka2d:"124",nama:"SEPAK BOLA"},kodeAlam:"SEPASANG MERPATI TERBANG",pohon:"SALAK",gayaBaru:{angka:"31",nama:["BUAYA","PERAWAN TUA"]}},
+"25":{taysen:["35","85","82","03"],nama:["MENANTU RAJA","RAJAWALI","BASE BALL","JAGUNG","MEMASAK","PASTA GIGI","MENELEPON","RONGGA DEWA"],pelarian:{angka:"98",nama:["MUSANG","PENDETA"]},erek1:{angka3d:"145",angka2d:"25",nama:"SUSTER"},erek2:{angka3d:"157",angka2d:"125",nama:"BENDERA JEPANG"},kodeAlam:"DURIAN JATUH",pohon:"KUINI",gayaBaru:{angka:"71",nama:["KURA-KURA","WANITA CANTIK"]}},
+"26":{taysen:["31","90","80","40"],nama:["RAJA","NAGA","HOCKEY","GANG GENG","UANG LOGAM","MESIN JAHIT","KEBAYA","SAMIAJI"],pelarian:{angka:"77",nama:["LABA-LABA","PENGEMIS"]},erek1:{angka3d:"66",angka2d:"26",nama:"BERDOA"},erek2:{angka3d:"173",angka2d:"126",nama:"BENDERA AMERIKA"},kodeAlam:"CICAK MAKAN CAPUNG",pohon:"SUKON",gayaBaru:{angka:"15",nama:["KAMBING","WANITA"]}},
+"27":{taysen:["19","61","06","11"],nama:["WANITA CANTIK","KURA-KURA","ISI MINYAK","BOLA SODOK","SABUN BUBUK","BIDAN","OTAK","DEWI SUPRABA"],pelarian:{angka:"66",nama:["JANGKRIK","WANITA SIHIR"]},erek1:{angka3d:"174",angka2d:"27",nama:"TUKANG AIR"},erek2:{angka3d:"115",angka2d:"127",nama:"SEJODOH"},kodeAlam:"CICAK MAKAN KUPU-KUPU",pohon:"RAMBUNG",gayaBaru:{angka:"13",nama:["UNTA","POTONG BABI"]}},
+"28":{taysen:["29","68","56","18"],nama:["PEMOTONG KAYU","AYAM","MENEMBAK","TOMAT","MONTIR","JARUM","PALA","RADEN NAKULA"],pelarian:{angka:"41",nama:["KODOK","SUMBER AIR"]},erek1:{angka3d:"10",angka2d:"28",nama:"PENYELAM"},erek2:{angka3d:"155",angka2d:"128",nama:"SILUMAN KERA"},kodeAlam:"KETINGGALAN DOMPET",pohon:"COKLAT",gayaBaru:{angka:"03",nama:["RUSA","ORANG BUTA"]}},
+"29":{taysen:["28","63","53","13"],nama:["PENDETA SAKTI","BELUT","TRUK BARANG","PANAHAN","KURSI","UANG PERAK","KORAN","SIDI WACANA"],pelarian:{angka:"37",nama:["KALONG","DRAKULA"]},erek1:{angka3d:"16",angka2d:"29",nama:"KEPALA SEKOLAH"},erek2:{angka3d:"139",angka2d:"129",nama:"SILUMAN BABI"},kodeAlam:"TEMUKAN UANG KERTAS DI JALAN",pohon:"DONDONG",gayaBaru:{angka:"59",nama:["CICAK","KEPALA POLISI"]}},
+"30":{taysen:["23","99","58","49"],nama:["NELAYAN","IKAN MAS","ANGKAT BESI","BELIMBING","PEMBUNUH","WC TOILET","TAS","NAGA TATMALA"],pelarian:{angka:"44",nama:["BEBEK","SUAMI ISTRI"]},erek1:{angka3d:"50",angka2d:"30",nama:"KEPALA STASIUN"},erek2:{angka3d:"45",angka2d:"130",nama:"SEMAR"},kodeAlam:"BANCI MENYEBERANG JALAN",pohon:"LOMPONG",gayaBaru:{angka:"93",nama:["IKAN PAUS","RAJA LAUT"]}},
+"31":{taysen:["26","94","59","44"],nama:["ANGGOTA KELAMIN","JAS HUJAN","UDANG","SENAM","SANGKAR","CACING PITA","CARI UANG","YUYU RUMPUNG"],pelarian:{angka:"99",nama:["BELIBIS","LELAKI SIHIR"]},erek1:{angka3d:"180",angka2d:"31",nama:"MARSEKAL"},erek2:{angka3d:"164",angka2d:"131",nama:"TABRAK LARI"},kodeAlam:"PENGEMIS BAWA ANAK",pohon:"TOMAT",gayaBaru:{angka:"24",nama:["TOKEK","RAKSASA"]}},
+"32":{taysen:["03","60","18","10"],nama:["AHLI NUJUM","ULAR","JUDO","KAMAR MANDI","SARANG LEBAH","TALI","CARI KERANG","ABIYASA"],pelarian:{angka:"57",nama:["KEPITING","PAHLAWAN"]},erek1:{angka3d:"167",angka2d:"32",nama:"MENTERI HUTAN"},erek2:{angka3d:"99",angka2d:"132",nama:"BAYI TABUNG"},kodeAlam:"KEPERGOK PENCURI AYAM",pohon:"PADI",gayaBaru:{angka:"05",nama:["KELINCI","DEWI BULAN"]}},
+"33":{taysen:["09","86","16","36"],nama:["PENGEMIS","GIGI","LABA-LABA","UANG","GULAT","SABUN","TAHU","PETRUK"],pelarian:{angka:"68",nama:["TIKUS","HAKIM"]},erek1:{angka3d:"148",angka2d:"33",nama:"PENGAIRAN"},erek2:{angka3d:"57",angka2d:"133",nama:"DUTA"},kodeAlam:"GAJAH MENGAMUK",pohon:"KELAPA SAWIT",gayaBaru:{angka:"58",nama:["BANTENG","PENGACARA"]}},
+"34":{taysen:["36","73","89","23"],nama:["ORANG BUTA","PARU-PARU","RUSA","JELARUT","SILAT","JAMU","MERPATI","DESTARATA"],pelarian:{angka:"47",nama:["AYAM","PEMOTONG KAYU"]},erek1:{angka3d:"96",angka2d:"34",nama:"SARJANA"},erek2:{angka3d:"22",angka2d:"134",nama:"KORAN"},kodeAlam:"BALON PECAH",pohon:"TERONG",gayaBaru:{angka:"07",nama:["BANGAU","PEMADAT"]}},
+"35":{taysen:["25","75","52","02"],nama:["WANITA","BATU","KAMBING","BONCENGAN","TINJU","LAMBUNG","JALAN-JALAN","DRUPADI"],pelarian:{angka:"50",nama:["WALET","PELACUR UMUM"]},erek1:{angka3d:"41",angka2d:"35",nama:"MENTERI WANITA"},erek2:{angka3d:"93",angka2d:"135",nama:"PECANDU"},kodeAlam:"DOMPET JATUH",pohon:"KELAPA SAWIT",gayaBaru:{angka:"60",nama:["DUYUNG","WANITA BUDAK"]}},
+"36":{taysen:["34","83","87","33"],nama:["PENDETA WANITA","MUSANG","BALAPAN SEPEDA","MANGGIS","SEKOP","KACAMATA","APOTIK","SAYEMPRABU"],pelarian:{angka:"10",nama:["MACAN","MALING"]},erek1:{angka3d:"13",angka2d:"36",nama:"DOKTER"},erek2:{angka3d:"121",angka2d:"136",nama:"TERTUDUH"},kodeAlam:"KUDIS DIPATUK AYAM",pohon:"SAWO",gayaBaru:{angka:"87",nama:["TONGKOL","PENJAGA MALAM"]}},
+"37":{taysen:["38","59","83","09"],nama:["SI BONGKOK","PACARAN","IKAN GABUS","BH","BALAPAN MOBIL","ANGGUR","TRUK","GARENG"],pelarian:{angka:"29",nama:["KALONG","DRAKULA"]},erek1:{angka3d:"83",angka2d:"37",nama:"PILOT"},erek2:{angka3d:"177",angka2d:"137",nama:"PENGADILAN"},kodeAlam:"ORANG BERMATA SATU",pohon:"RAMBUTAN",gayaBaru:{angka:"98",nama:["KUMBANG","PENDEKAR WANITA"]}},
+"38":{taysen:["37","67","84","17"],nama:["PUTRA RAJA","CENDRAWASIH","BALAPAN SEPEDA MOTOR","TONG","KAPAL PERANG","ENGSEL","HAMIL","UNTARI"],pelarian:{angka:"69",nama:["BANGAU","PEMAHAT"]},erek1:{angka3d:"03",angka2d:"38",nama:"INANG"},erek2:{angka3d:"19",angka2d:"138",nama:"PEMANDANGAN"},kodeAlam:"WANITA BERAMBUT PANJANG EKOR KUDA",pohon:"PETAI",gayaBaru:{angka:"07",nama:["BURUNG HANTU","PEMBUAT PEDANG"]}},
+"39":{taysen:["44","55","77","05"],nama:["KEKASIH","KALAJENGKING","KEDELAI","BALAPAN KUDA","TOPI","BEMO","NARASOMA"],pelarian:{angka:"84",nama:["KUMBANG","PENDEKAR WANITA"]},erek1:{angka3d:"154",angka2d:"39",nama:"PEMABUK"},erek2:{angka3d:"129",angka2d:"139",nama:"KEBUN BINATANG"},kodeAlam:"PEMAIN BOLA PATAH KAKI",pohon:"JENGKOL",gayaBaru:{angka:"14",nama:["ANJING","JENDERAL SERAKAH"]}},
+"40":{taysen:["43","76","78","26"],nama:["PENOLONG","GELATIK","JUAL JAGUNG","GOLF","PECI","DUKU","TANG","WIDURI"],pelarian:{angka:"49",nama:["BURUNG PUYUH","ORANG BISU"]},erek1:{angka3d:"123",angka2d:"40",nama:"PELANCONG"},erek2:{angka3d:"111",angka2d:"140",nama:"KOLAM RENANG"},kodeAlam:"PAKAI AKAR BAHAR",pohon:"KOPI",gayaBaru:{angka:"08",nama:["IKAN GABUS","SI BONGKOK"]}},
+"41":{taysen:["49","56","76","06"],nama:["PAHLAWAN","KEPITING","BERKUDA","LILIN","PAKU","SABUK","JERING","WARSAYA"],pelarian:{angka:"28",nama:["KODOK","SUMBER AIR"]},erek1:{angka3d:"35",angka2d:"41",nama:"PUTRI DUYUNG"},erek2:{angka3d:"85",angka2d:"141",nama:"PABRIK"},kodeAlam:"CICAK JATUH",pohon:"LADA",gayaBaru:{angka:"49",nama:["IKAN BENDERA","PEMABUK"]}},
+"42":{taysen:["45","97","72","47"],nama:["JEJAKA TUA","BUAYA","BERJALAN","CATUR","PAKIS","DOKTER","MARINIR","WIDAKTA"],pelarian:{angka:"72",nama:["KAMBING","WANITA"]},erek1:{angka3d:"24",angka2d:"42",nama:"MENJERAT ANJING"},erek2:{angka3d:"108",angka2d:"142",nama:"PETROMAK"},kodeAlam:"KUCING TANGKAP KADAL",pohon:"CENGKEH",gayaBaru:{angka:"95",nama:["PERKUTUT","PETANI"]}},
+"43":{taysen:["40","71","41","21"],nama:["JANDA MUDA","IKAN SURO","ANGGAR","MAWAR","LANGSAT","GRENDEL","BOM","SEMBADRA"],pelarian:{angka:"58",nama:["MACAN TUTUL","PEMBURU"]},erek1:{angka3d:"100",angka2d:"43",nama:"WASIT"},erek2:{angka3d:"08",angka2d:"143",nama:"LAMPU ALADIN"},kodeAlam:"HELM JATUH NAIK MOTOR",pohon:"MERICA",gayaBaru:{angka:"90",nama:["SERIGALA","SILUMAN AIR"]}},
+"44":{taysen:["39","81","86","31"],nama:["BRANDAL","BADAK","SKI AIR","SISIR","KUACI","SERULING","GADUNG","CITRAKSA"],pelarian:{angka:"30",nama:["BEBEK","SUAMI ISTRI"]},erek1:{angka3d:"20",angka2d:"44",nama:"PELANCONG"},erek2:{angka3d:"101",angka2d:"144",nama:"MONTIR"},kodeAlam:"GUNUNG MELETUS",pohon:"KAYU MANIS",gayaBaru:{angka:"70",nama:["NYAMUK","JENDERAL"]}},
+"45":{taysen:["42","51","75","01"],nama:["PENGEMBARA","BANTENG","TERBANG LAYANG","KENDI","TAS","MATA-MATA","KETUPAT","RAMA"],pelarian:{angka:"19",nama:["BEKICOT","SARJANA"]},erek1:{angka3d:"130",angka2d:"45",nama:"KERJA BAKTI"},erek2:{angka3d:"25",angka2d:"145",nama:"AKROBAT"},kodeAlam:"SERDADU LATIHAN BARIS",pohon:"KEMIRI",gayaBaru:{angka:"65",nama:["HIU","RAJA SETAN"]}},
+"46":{taysen:["48","64","73","14"],nama:["NENEK MOYANG","ORANG UTAN","TUKAR BAN","TERJUN BEBAS","TOKO","RUMAH SAKIT","SIKAT","HYANG WENANG"],pelarian:{angka:"03",nama:["KUPU-KUPU","PELACUR TINGGI"]},erek1:{angka3d:"175",angka2d:"46",nama:"TUKANG JAM"},erek2:{angka3d:"98",angka2d:"146",nama:"TUKANG FOTO"},kodeAlam:"ORANG HAMIL TERLANGGAR",pohon:"SIRSAK",gayaBaru:{angka:"19",nama:["KEPITING","PAHLAWAN"]}},
+"47":{taysen:["50","92","21","42"],nama:["BANCI","KELADI","ZEBRA","UPACARA BENDERA","HOTEL","TANGGA","SIRKUS","STUNA"],pelarian:{angka:"34",nama:["AYAM","PEMOTONG KAYU"]},erek1:{angka3d:"70",angka2d:"47",nama:"SABUNG AYAM"},erek2:{angka3d:"107",angka2d:"147",nama:"PERMATA PIRUS"},kodeAlam:"GURU SELINGKUH DENGAN MURID",pohon:"RUKAM",gayaBaru:{angka:"82",nama:["TAPIR","PENYAIR"]}},
+"48":{taysen:["46","00","79","50"],nama:["SI CEROBOH","LANDAK","LABU","MAIN CATUR","BIOSKOP","GARUK","BOTOL OBAT","DASA MUKA"],pelarian:{angka:"16",nama:["CENDRAWASIH","PUTRI RAJA"]},erek1:{angka3d:"79",angka2d:"48",nama:"NYELAM"},erek2:{angka3d:"33",angka2d:"148",nama:"BADUT"},kodeAlam:"NGEBUT DI JALAN RAYA",pohon:"AKASIA",gayaBaru:{angka:"96",nama:["LABA-LABA","PENGEMIS"]}},
+"49":{taysen:["41","80","70","30"],nama:["DRAKULA","KELELAWAR","MENDAKI GUNUNG","CETOK","LIPSTIK","ROK","ORANG MELAHIRKAN","BETARA DURGA"],pelarian:{angka:"40",nama:["PUYUH","ORANG BISU"]},erek1:{angka3d:"78",angka2d:"49",nama:"ROBOT"},erek2:{angka3d:"90",angka2d:"149",nama:"BERPIDATO"},kodeAlam:"PEJABAT DIPECAT KARENA KORUPSI",pohon:"SERI",gayaBaru:{angka:"21",nama:["TRENGGILING","TAHANAN"]}},
+"50":{taysen:["47","98","74","48"],nama:["ORANG ESKIMO","BERUANG","DAUN SIRIH","PEMBAWA OBOR","PACUL","GURU","JUAL SATE","BAGONG"],pelarian:{angka:"35",nama:["WALET","PELACUR UMUM"]},erek1:{angka3d:"30",angka2d:"50",nama:"NENEK MOYANG"},erek2:{angka3d:"112",angka2d:"150",nama:"BIKHU"},kodeAlam:"ORANG GILA MENYANYI",pohon:"ALPUKAT",gayaBaru:{angka:"20",nama:["KERANG","AHLI FILSAFAT"]}},
+"51":{taysen:["55","45","22","95"],nama:["AHLI FILSAFAT","KERANG","LONCENG","PATEL LELE","TEBU","CELANA","RAPAT KERJA","NARADA"],pelarian:{angka:"88",nama:["HARIMAU","TUKANG TENUNG"]},erek1:{angka3d:"151",angka2d:"51",nama:"TUKANG KAYU"},erek2:{angka3d:"51",angka2d:"151",nama:"KASIH IBU"},kodeAlam:"PENYELUNDUP WANITA TERTANGKAP POLISI",pohon:"BERINGIN",gayaBaru:{angka:"21",nama:["UDANG","KEUANGAN"]}},
+"52":{taysen:["66","03","99","85"],nama:["RAJA LAUT","MINUM RACUN","IKAN PAUS","MAIN TALI","DOMPET","MATAHARI","BUAH NONA","ANTASENA"],pelarian:{angka:"04",nama:["KUTILANG","SENIMAN"]},erek1:{angka3d:"124",angka2d:"52",nama:"TUKANG BATU"},erek2:{angka3d:"04",angka2d:"152",nama:"ARJUNA"},kodeAlam:"GEMBONG PREMAN MATI TERBUNUH",pohon:"PINUS",gayaBaru:{angka:"55",nama:["KANGGURU","PERTAPA"]}},
+"53":{taysen:["82","02","35","75"],nama:["PENJUAL SILAT","IKAN DURI","GARAM","AKROBAT","RAMBUTAN","KIRIM SURAT","TAXI","ABIMANYU"],pelarian:{angka:"62",nama:["BURUNG HANTU","PEMBUAT PEDANG"]},erek1:{angka3d:"75",angka2d:"53",nama:"PANDIR"},erek2:{angka3d:"71",angka2d:"153",nama:"PENDEKAR"},kodeAlam:"ORANG ASING MENGEMUDI BECAK",pohon:"CENDANA",gayaBaru:{angka:"23",nama:["KUDA NIL","GEMBALA"]}},
+"54":{taysen:["62","15","95","65"],nama:["RAJA KERA","LELE","SEPATU RODA","KALUNG","JUARA","DOKAR","KURSI MALAS","HANOMAN"],pelarian:{angka:"71",nama:["RAJAWALI","MENANTU RAJA"]},erek1:{angka3d:"95",angka2d:"54",nama:"KUSIR"},erek2:{angka3d:"39",angka2d:"154",nama:"RAJA"},kodeAlam:"KEPERGOK ISTRI SEDANG JALAN-JALAN DENGAN KEKASIH",pohon:"CEMPAKA",gayaBaru:{angka:"78",nama:["JERAPAH","DEWA BUMI"]}},
+"55":{taysen:["51","39","20","89"],nama:["PERTAPA","KANGGURU","KASTI","GELANG","DI KLENTENG","PENGARON","MEMETIK DAUN TEMBAKAU","RADEN SETA"],pelarian:{angka:"96",nama:["HIU","RAJA SETAN"]},erek1:{angka3d:"77",angka2d:"55",nama:"JUAL BUNGA"},erek2:{angka3d:"128",angka2d:"155",nama:"PELARIAN"},kodeAlam:"NENEK DAN KAKEK JALAN BERDUA",pohon:"KAMBOJA",gayaBaru:{angka:"52",nama:["IKAN GERGAJI","ORANG KAYA"]}},
+"56":{taysen:["70","41","71","91"],nama:["BUDAK","IKAN DUYUNG","RINGEN","KENANGA","CIKAR","BENGKUNG","MAKAN DURIAN","LIMBUK"],pelarian:{angka:"18",nama:["UDANG","KELAMIN"]},erek1:{angka3d:"179",angka2d:"56",nama:"MONTOK"},erek2:{angka3d:"70",angka2d:"156",nama:"PROFESOR"},kodeAlam:"TANAMAN PADI KENA BANJIR",pohon:"RAMBE",gayaBaru:{angka:"81",nama:["JANGKRIK","WANITA SIHIR"]}},
+"57":{taysen:["74","08","47","58"],nama:["ANAK SAKTI","JUAL BAKSO","ULAT SUTRA","KUNYIT","LAYANG-LAYANG","SEPATU","TEMPAT TIDUR","GATOT KACA"],pelarian:{angka:"32",nama:["KEPITING","PAHLAWAN"]},erek1:{angka3d:"133",angka2d:"57",nama:"SOPIR TAXI"},erek2:{angka3d:"125",angka2d:"157",nama:"KWAN KONG"},kodeAlam:"HIDUNG BERDARAH / MIMISAN",pohon:"DUKU",gayaBaru:{angka:"80",nama:["KERA","NENEK MOYANG"]}},
+"58":{taysen:["67","07","94","57"],nama:["PENARI","PACUAN KUDA","CUMI-CUMI","HANTU","KELERENG","SEKOLAHAN","RUMAH","SELIR"],pelarian:{angka:"43",nama:["MACAN TUTUL","PEMBURU"]},erek1:{angka3d:"114",angka2d:"58",nama:"KAPSALON"},erek2:{angka3d:"09",angka2d:"158",nama:"SELIR"},kodeAlam:"ORANG KELING MABUK MASUK PARIT",pohon:"CEMPEDAK",gayaBaru:{angka:"33",nama:["BERUANG","ORANG ESKIMO"]}},
+"59":{taysen:["83","37","38","87"],nama:["PUTRA RAJA","KAKATUA","KAOS","DAKON","KEDONDONG","JAM DINDING","KENCUR","RADEN LESMANA"],pelarian:{angka:"14",nama:["KUDA","PENASEHAT PERANG"]},erek1:{angka3d:"160",angka2d:"59",nama:"PETANI"},erek2:{angka3d:"17",angka2d:"159",nama:"GENTLEMEN"},kodeAlam:"GORENG PISANG HANGUS",pohon:"NONA",gayaBaru:{angka:"29",nama:["ORANG UTAN","SETAN GANTUNG"]}},
+"60":{taysen:["68","32","93","82"],nama:["KEPALA POLISI","CURI AYAM","CICAK","POT BUNGA","KARAMBOL","DELIMA","HANDUK","SENTIAKI"],pelarian:{angka:"73",nama:["MERAK","KWAN IM"]},erek1:{angka3d:"82",angka2d:"60",nama:"TUKANG PUKUL"},erek2:{angka3d:"59",angka2d:"160",nama:"TERJUN PAYUNG"},kodeAlam:"ORANG BARAT TAWAR BUAH",pohon:"MAHONI",gayaBaru:{angka:"35",nama:["ULAT SUTRA","TERJERAT"]}},
+"61":{taysen:["65","27","92","77"],nama:["PEDAGANG","KECOA","GENDONGAN","MAYAT","KACAMATA","BUKU","ROTI","BALA DEWA"],pelarian:{angka:"89",nama:["TAWON","SAKIT KUDIS"]},erek1:{angka3d:"84",angka2d:"81",nama:"TAHANAN"},erek2:{angka3d:"68",angka2d:"161",nama:"MAIN KASTI"},kodeAlam:"DIANCAM DI TENGAH JALAN",pohon:"BELIMBING",gayaBaru:{angka:"91",nama:["IKAN SURO","JANDA MUDA"]}},
+"62":{taysen:["54","19","27","69"],nama:["PAGODA","WALANG KADUNG","MERIAM","PETAN","TERMOS","TERHALANG","SELENDANG","SAPTA ARGA"],pelarian:{angka:"53",nama:["BURUNG HANTU","PEMBUAT PEDANG"]},erek1:{angka3d:"104",angka2d:"62",nama:"MATA-MATA"},erek2:{angka3d:"117",angka2d:"162",nama:"AMBULANS"},kodeAlam:"MUSANG TANGKAP AYAM",pohon:"TURI",gayaBaru:{angka:"98",nama:["IKAN MUS","PRAJURIT"]}},
+"63":{taysen:["64","29","97","79"],nama:["PENDEKAR WANITA","KUMBANG","BELANJA","TREKSANDO","BANTAL","JENDELA","TALAS","LARASATI"],pelarian:{angka:"74",nama:["KELABANG","KLENTENG"]},erek1:{angka3d:"118",angka2d:"63",nama:"TUKANG ROMBENGAN"},erek2:{angka3d:"02",angka2d:"163",nama:"TELEVISI"},kodeAlam:"PEDAGANG OBAT JALANAN",pohon:"APEL",gayaBaru:{angka:"94",nama:["KUDA LAUT","DEWA ANGIN"]}},
+"64":{taysen:["63","46","98","96"],nama:["DEWA UANG","KUDA LAUT","RONGGENG","BANDULAN","APEL","GULING","KECAMBAH","BETARA INDRA"],pelarian:{angka:"06",nama:["NAGA","RAJA"]},erek1:{angka3d:"172",angka2d:"64",nama:"FIRAUN"},erek2:{angka3d:"131",angka2d:"164",nama:"LAPANGAN"},kodeAlam:"WANITA BERTENGKAR",pohon:"KENTANG",gayaBaru:{angka:"38",nama:["MIMI","PENCARI JEJAK"]}},
+"65":{taysen:["61","04","90","54"],nama:["RAJA SETAN","IKAN HIU","JIPANG","KAYANG","KLOMPEN","PETROMAK","ISAP CANDU","KALASRENGGI"],pelarian:{angka:"85",nama:["BABI","PELAYAN"]},erek1:{angka3d:"14",angka2d:"65",nama:"BAJINGAN"},erek2:{angka3d:"94",angka2d:"165",nama:"ESKIMO"},kodeAlam:"KELELAWAR MASUK RUMAH",pohon:"PETAI CINA",gayaBaru:{angka:"45",nama:["UNTA","PENJUAL DAGING"]}},
+"66":{taysen:["52","24","25","74"],nama:["DEWA BUMI","JERAPAH","SAWATAN","POTONG PADI","SUKUN","KOREK UBI","GELAS","ANTABOGA"],pelarian:{angka:"27",nama:["JANGKRIK","WANITA SIHIR"]},erek1:{angka3d:"26",angka2d:"66",nama:"KULI PASIR"},erek2:{angka3d:"23",angka2d:"166",nama:"ROKET"},kodeAlam:"ANAK TERSIRAM AIR PANAS",pohon:"KLUTUK",gayaBaru:{angka:"79",nama:["LINTAH","PENGHISAP BUMI"]}},
+"67":{taysen:["58","38","23","88"],nama:["PENJUAL DAGING","BURUNG UNTA","KOREK API","EGRANG","SENDOK","HADIAH KEKASIH","KACANG PANJANG","ABILAWA"],pelarian:{angka:"00",nama:["KERBAU","JENDERAL"]},erek1:{angka3d:"171",angka2d:"61",nama:"WANITA PENGHIBUR"},erek2:{angka3d:"32",angka2d:"167",nama:"BULAN"},kodeAlam:"TUKANG BECAK TIDUR",pohon:"LONTAR",gayaBaru:{angka:"92",nama:["CUMI-CUMI","PENARI"]}},
+"68":{taysen:["60","28","91","78"],nama:["PEMBUAT PEDANG","BURUNG HANTU","NAIK JAMBE","UBI","GARPU","PISAU","SAPI DUEL","CEPOT"],pelarian:{angka:"33",nama:["TIKUS","HAKIM"]},erek1:{angka3d:"161",angka2d:"68",nama:"BUDHISME"},erek2:{angka3d:"80",angka2d:"168",nama:"KALUNG BERLIAN"},kodeAlam:"TANGAN TERPOTONG",pohon:"LUWIH",gayaBaru:{angka:"18",nama:["BANDENG","SETAN"]}},
+"69":{taysen:["77","12","44","62"],nama:["PENCARI JEJAK","MIMI","GUNUNG","ENGKLEK","GUNTING","TUKANG JAM","PETI MATI","ANTAREJA"],pelarian:{angka:"38",nama:["BANGAU","PEMADAT"]},erek1:{angka3d:"12",angka2d:"69",nama:"WANITA HAMIL"},erek2:{angka3d:"110",angka2d:"169",nama:"PERMAISURI"},kodeAlam:"TUKANG ES TERLANGGAR",pohon:"MELINJO",gayaBaru:{angka:"83",nama:["WALANG KADUNG","PAGODA"]}},
+"70":{taysen:["56","22","29","72"],nama:["PANGLIMA","KELEDAI","TARIK TAMBANG","LAMPU MINYAK","RUMAH MAKAN","UBI KAYU","DEWA KARNO"],pelarian:{angka:"75",nama:["IKAN MAS","NELAYAN"]},erek1:{angka3d:"47",angka2d:"70",nama:"TIMPANG"},erek2:{angka3d:"156",angka2d:"170",nama:"KELANA"},kodeAlam:"KENA RAZIA POLISI",pohon:"JAMBU MONYET",gayaBaru:{angka:"44",nama:["BETET","ORANG GILA"]}},
+"71":{taysen:["72","43","45","93"],nama:["PEMBURU","MACAN TUTUL","LONCAT KARET","SUMUR","KACANG GORENG","PISTOL MAINAN","KEMEJA","PANDU"],pelarian:{angka:"54",nama:["RAJAWALI","MENANTU RAJA"]},erek1:{angka3d:"153",angka2d:"71",nama:"LINTAH DARAT"},erek2:{angka3d:"67",angka2d:"171",nama:"PIALA"},kodeAlam:"AYAM CURI IKAN",pohon:"LENGKENG",gayaBaru:{angka:"11",nama:["LELE","RAJA KERA"]}},
+"72":{taysen:["71","20","40","70"],nama:["DEWA LANGIT","IKAN DORANG","MENANAM KELAPA","IK OL","KRAN AIR","ARLOJI","TUGU","BETARA GURU"],pelarian:{angka:"42",nama:["KAMBING","WANITA"]},erek1:{angka3d:"81",angka2d:"72",nama:"TUKANG PARKIR"},erek2:{angka3d:"64",angka2d:"172",nama:"CANDI"},kodeAlam:"PEDAGANG KAIN MARAH",pohon:"RODA",gayaBaru:{angka:"22",nama:["ZEBRA","BANCI"]}},
+"73":{taysen:["80","34","31","84"],nama:["TUAN TANAH","SEMUT","BOLPEN","SUMPRITAN","ANTING-ANTING","SIKAT BULU","BINTANG","DURSASANA"],pelarian:{angka:"60",nama:["MERAK","KWAN IM"]},erek1:{angka3d:"102",angka2d:"73",nama:"PANDAI BESI"},erek2:{angka3d:"126",angka2d:"173",nama:"KARTU AS"},kodeAlam:"TERPIJAK KOTORAN MANUSIA",pohon:"WARU",gayaBaru:{angka:"98",nama:["IKAN SAMPAN","DEWA LAUT"]}},
+"74":{taysen:["57","16","24","66"],nama:["BAJAK LAUT","PENGUIN","KENARI","KETAPEL","GENTONG","RADIO","KAMERA","INDRAJIT"],pelarian:{angka:"63",nama:["KELABANG","KLENTENG"]},erek1:{angka3d:"01",angka2d:"74",nama:"WARIA"},erek2:{angka3d:"27",angka2d:"174",nama:"LUKISAN"},kodeAlam:"KENCAN DI BAWAH POHON",pohon:"JUAR",gayaBaru:{angka:"97",nama:["IKAN TENGGIRI","PUTRI KIPAS"]}},
+"75":{taysen:["85","35","32","53"],nama:["SUAMI ISTRI","BEBEK","KUWENI","BALAPAN","NANGKA","JATUH","LEMARI","RATIH KAMAJAYA"],pelarian:{angka:"70",nama:["IKAN MAS","NELAYAN"]},erek1:{angka3d:"53",angka2d:"75",nama:"MALING"},erek2:{angka3d:"46",angka2d:"175",nama:"KUNCI"},kodeAlam:"MANCING DAPAT ULAR",pohon:"BONI",gayaBaru:{angka:"09",nama:["KALONG","DRAKULA"]}},
+"76":{taysen:["81","40","30","90"],nama:["JENDERAL WANITA","NYAMUK","KASUR","TEPLEKAN","TIMBANGAN","MATA","AMBIL AIR","SRIKANDI"],pelarian:{angka:"07",nama:["KERA","SETAN GANTUNG"]},erek1:{angka3d:"106",angka2d:"76",nama:"PENGEMIS"},erek2:{angka3d:"109",angka2d:"176",nama:"AYUNAN"},kodeAlam:"RUMAH GUBUK TERBAKAR",pohon:"CERMAI",gayaBaru:{angka:"84",nama:["KEPOMPONG","TERJERAT"]}},
+"77":{taysen:["69","11","96","61"],nama:["WALI KOTA","PENYU","CINCIN","BERMAIN BEKEL","PAYUNG","PARE","ANJING BERCINTA","TOGOG"],pelarian:{angka:"26",nama:["LABA-LABA","PENGEMIS"]},erek1:{angka3d:"55",angka2d:"77",nama:"SEKRETARIS"},erek2:{angka3d:"137",angka2d:"177",nama:"BARONGSAI"},kodeAlam:"PEMAIN SULAP DI PINGGIR JALAN",pohon:"LENGKUAS",gayaBaru:{angka:"02",nama:["KUCING","KAS UANG"]}},
+"78":{taysen:["79","18","46","68"],nama:["ORANG KAYA","IKAN GERGAJI","BALAPAN BECAK","SEMANGKA","KETUMBAR","WAJAN","JUAL OBAT","LESMANA"],pelarian:{angka:"83",nama:["BURUNG GEREJA","JURU SAKTI"]},erek1:{angka3d:"49",angka2d:"78",nama:"AHLI SEPATU"},erek2:{angka3d:"17",angka2d:"178",nama:"DAKOCHAN"},kodeAlam:"PECOPET BERAKSI",pohon:"KURMA",gayaBaru:{angka:"54",nama:["KECOA","PEDAGANG"]}},
+"79":{taysen:["78","13","43","63"],nama:["JENDERAL SERAKAH","ORONG-ORONG","JAGUNG","PANCO","JERUK BALI","MAIN-MAIN","KOMPOR","SUYUDONO"],pelarian:{angka:"02",nama:["KUCING","KAS UANG"]},erek1:{angka3d:"48",angka2d:"79",nama:"POTONG RAMBUT"},erek2:{angka3d:"11",angka2d:"179",nama:"HARIMAU"},kodeAlam:"PLAZA TERBAKAR",pohon:"DRINGO",gayaBaru:{angka:"66",nama:["ORONG-ORONG","MALING BESAR"]}},
+"80":{taysen:["73","49","48","99"],nama:["KEPALA DESA","BAJING","PENSIL","APOLLO","BUNGA","CERET","SIRAM SAYUR","SEMAR"],pelarian:{angka:"97",nama:["RUSA","ORANG BUTA"]},erek1:{angka3d:"168",angka2d:"80",nama:"BIDUAN"},erek2:{angka3d:"31",angka2d:"180",nama:"LILIN"},kodeAlam:"ANAK DAN INDUK PUYUH LEWAT",pohon:"JERANGO",gayaBaru:{angka:"57",nama:["LANDAK","CEROBOH"]}},
+"81":{taysen:["76","44","49","94"],nama:["PENIPU","KANCIL","JANUR AREN","MENYULAM","CANGKIR","DAM-DAMAN","HIDUNG","ASWATAMA"],pelarian:{angka:"11",nama:["SINGA","KEPALA RAMPOK"]},erek1:{angka3d:"72",angka2d:"81",nama:"WARTAWAN"},erek2:{angka3d:"56",angka2d:"181",nama:"MATAHARI"},kodeAlam:"ORANG NAIK SEPEDA MINI",pohon:"KINCONG",gayaBaru:{angka:"56",nama:["ORONG-ORONG","JENDERAL SERAKAH"]}},
+"82":{taysen:["53","10","28","60"],nama:["GEMBALA SAPI","KUDA NIL","LILIN","KARTU AS","BERLIAN","TELINGA","LENCANA","UDAWA"],pelarian:{angka:"15",nama:["MERPATI","SEJODOH"]},erek1:{angka3d:"60",angka2d:"82",nama:"POLANTAS"},erek2:{angka3d:"56",angka2d:"181",nama:"NOCTURAMA"},kodeAlam:"DAPUR TERBAKAR",pohon:"ASAM JAWA",gayaBaru:{angka:"47",nama:["PENGUIN","BAJAK LAUT"]}},
+"83":{taysen:["59","36","26","86"],nama:["IBU SURI","IKAN LAYUR","BUNCIS","DADU","PIPA","KUMIS","BERKASIHAN","DEWI KUNTI"],pelarian:{angka:"78",nama:["BURUNG GEREJA","JURUS SAKTI"]},erek1:{angka3d:"37",angka2d:"83",nama:"JURU MASAK"},erek2:{angka3d:"200",angka2d:"183",nama:"JANTUNG"},kodeAlam:"ANAK KEMBAR BERJALAN",pohon:"GELUGUR",gayaBaru:{angka:"69",nama:["KELEDAI","PANGLIMA"]}},
+"84":{taysen:["86","23","39","73"],nama:["BUDHA","KALKUN","BIBIR","KOPROL","KACANG","BERKUNJUNG","KOL","RESI BAGASPATI"],pelarian:{angka:"39",nama:["KUMBANG","PENDEKAR WANITA"]},erek1:{angka3d:"61",angka2d:"84",nama:"KEPALA KANTOR"},erek2:{angka3d:"195",angka2d:"184",nama:"KUKU JARI"},kodeAlam:"ATAP RUMAH DILEMPAR BATU",pohon:"PINANG",gayaBaru:{angka:"76",nama:["CENDRAWASIH","PUTRI RAJA"]}},
+"85":{taysen:["75","25","42","52"],nama:["WANITA SIHIR","TUMBUHAN ROTAN","JANGKRIK","LATIHAN HANSIP","TERATAI","PINTU","NAIK KAPAL","SARPA KENAKA"],pelarian:{angka:"56",nama:["BABI","PELAYAN"]},erek1:{angka3d:"41",angka2d:"85",nama:"PENERJEMAH"},erek2:{angka3d:"195",angka2d:"184",nama:"JANGGUT"},kodeAlam:"ORANG HANYUT DI SUNGAI",pohon:"ROTAN",gayaBaru:{angka:"06",nama:["BABI","PELAYAN"]}},
+"86":{taysen:["84","33","37","83"],nama:["PENCABUT NYAWA","IKAN SAMPAN","DAPAT LENCANA","GERAK BADAN","SALAK","ROKOK","TIMUN","YAMADIPATI"],pelarian:{angka:"92",nama:["BUAYA","PERJAKA TUA"]},erek1:{angka3d:"97",angka2d:"86",nama:"NAHKODA"},erek2:{angka3d:"194",angka2d:"186",nama:"PIRING PECAH"},kodeAlam:"AYAM BERKOKOK PUKUL 12 MALAM",pohon:"JAHE",gayaBaru:{angka:"37",nama:["BAJING","KEPALA DESA"]}},
+"87":{taysen:["88","09","33","59"],nama:["ORANG GILA","BETET","BENGKUANG","KERJA BAKTI","BOTOL","TOILET","NAIK KAPAL TERBANG","BURISRAWA"],pelarian:{angka:"94",nama:["GAJAH","PENJAGA PINTU"]},erek1:{angka3d:"41",angka2d:"87",nama:"RAMBU"},erek2:{angka3d:"198",angka2d:"187",nama:"DUDA"},kodeAlam:"ORANG PAKAI KACAMATA HITAM",pohon:"KANTIL",gayaBaru:{angka:"36",nama:["DOMBA","DEWI NAGA"]}},
+"88":{taysen:["87","17","34","67"],nama:["DEWI MEGA","DOMBA","BAWANG","BALAPAN KARUNG","JERUK MANIS","PIRING","MELUKU","WILUTAMA"],pelarian:{angka:"51",nama:["HARIMAU","TUKANG TENUN"]},erek1:{angka3d:"105",angka2d:"88",nama:"DIREKTRIS"},erek2:{angka3d:"193",angka2d:"188",nama:"HELIKOPTER"},kodeAlam:"RAYAKAN ULANG TAHUN KE 17",pohon:"TEH",gayaBaru:{angka:"04",nama:["AYAM","PEMOTONG KAYU"]}},
+"89":{taysen:["94","05","57","55"],nama:["PEMABUK","IKAN BENDERA","LAMPU MERAH","TAMBAL BAN","JERUK KEPROK","BERCIUMAN","EMBER","BOMANARA"],pelarian:{angka:"61",nama:["TAWON","SAKIT KUDIS"]},erek1:{angka3d:"07",angka2d:"89",nama:"PENGE BORAN"},erek2:{angka3d:"197",angka2d:"189",nama:"BATU KELAPA"},kodeAlam:"KENDARAAN RODA EMPAT TERBALIK",pohon:"KEMENYAN",gayaBaru:{angka:"62",nama:["IKAN DURI","PENJUAL SILAT"]}},
+"90":{taysen:["93","26","68","76"],nama:["TAWANAN","TRENGGILING","PEREMPATAN JALAN","SAWAH","BERJUDI","PIL","KE PASAR","SHINTA"],pelarian:{angka:"12",nama:["KELINCI","DEWI BULAN"]},erek1:{angka3d:"149",angka2d:"90",nama:"PEMBURU"},erek2:{angka3d:"192",angka2d:"190",nama:"SATE KERANG"},kodeAlam:"WANITA GUNDUL",pohon:"GANDUM",gayaBaru:{angka:"43",nama:["PENYU","WALIKOTA"]}},
+"91":{taysen:["99","06","66","56"],nama:["SILUMAN AIR","SERIGALA","TANAM PADI","AMBULANS","BAMBU","TOPLES","KEDAI SAMSU","WITAKSINI"],pelarian:{angka:"23",nama:["SERIGALA","SILUMAN AIR"]},erek1:{angka3d:"21",angka2d:"91",nama:"HINDU"},erek2:{angka3d:"196",angka2d:"191",nama:"PINGGUL"},kodeAlam:"ANAK KECIL PEGANG KOTORAN",pohon:"DAMAR",gayaBaru:{angka:"61",nama:["MERAK","KWAN IM"]}},
+"92":{taysen:["95","47","62","97"],nama:["PENDEKAR KIPAS BESI","IKAN TENGGIRI","KAIN","GARIS FINISH","ALPUKAT","SARUNG","SABUN","SITI SUNDARI"],pelarian:{angka:"86",nama:["BUAYA","PERJAKA TUA"]},erek1:{angka3d:"15",angka2d:"92",nama:"ANAK HARAM"},erek2:{angka3d:"191",angka2d:"192",nama:"RAMBUT"},kodeAlam:"MAIN CATUR SENDIRI",pohon:"JAMBU BOL",gayaBaru:{angka:"67",nama:["KAKATUA","PUTRA RAJA"]}},
+"93":{taysen:["90","21","61","71"],nama:["PENJILAT","BABI HUTAN","PERAHU","LARANGAN","KAOS KAKI","JENGKOL","PONDOK","DURNA"],pelarian:{angka:"22",nama:["BERUANG","ORANG ESKIMO"]},erek1:{angka3d:"135",angka2d:"93",nama:"PENDUSTA"},erek2:{angka3d:"195",angka2d:"193",nama:"JANUR"},kodeAlam:"PENGUSAHA BANGKRUT",pohon:"GAYONG",gayaBaru:{angka:"30",nama:["BABI HUTAN","KWAN IM"]}},
+"94":{taysen:["89","31","36","81"],nama:["KWAN KONG","IKAN KAKAP","TIDUR","PEMANDIAN","JAMBU","JAHIT BAJU","PENA","PRABU SALYA"],pelarian:{angka:"87",nama:["GAJAH","PENJAGA PINTU"]},erek1:{angka3d:"165",angka2d:"94",nama:"ZATO ICHI"},erek2:{angka3d:"190",angka2d:"194",nama:"RAMBUT"},kodeAlam:"MOBIL MASUK JURANG",pohon:"GANDUNG",gayaBaru:{angka:"63",nama:["KAKAP"]}},
+"95":{taysen:["92","01","65","51"],nama:["PETANI","MENAMPI PADI","PERKUTUT","JALAN RAYA","CERET LISTRIK","KUNCI","PISAU CUKUR","IRAWAN"],pelarian:{angka:"01",nama:["PERKUTUT","GEROMBOLAN PERAMPOK"]},erek1:{angka3d:"54",angka2d:"95",nama:"MOTOR CROSS"},erek2:{angka3d:"194",angka2d:"195",nama:"KARE AYAM"},kodeAlam:"MATI MENDADAK",pohon:"ANGGREK",gayaBaru:{angka:"42",nama:["IKAN LAYUR","IBU SURI"]}},
+"96":{taysen:["98","14","63","64"],nama:["PRAJURIT","IKAN NUS","SELIMUT","LAUT","MANGGA","MINYAK ANGIN","AYAM BETINA","CITRA YUDHA"],pelarian:{angka:"55",nama:["IKAN HIU","RAJA SETAN"]},erek1:{angka3d:"34",angka2d:"96",nama:"PRAMUWISMA"},erek2:{angka3d:"189",angka2d:"196",nama:"TAHI LALAT"},kodeAlam:"BUNUH AYAH",pohon:"PALA",gayaBaru:{angka:"48",nama:["KALAJENGKING","KEKASIH"]}},
+"97":{taysen:["00","42","11","92"],nama:["RAKSASA","TOKEK","AMBIL KELAPA","KALI BRANTAS","SIRSAK","LEMARI ES","TULI","PRAHASTA"],pelarian:{angka:"80",nama:["RUSA","ORANG BUTA"]},erek1:{angka3d:"86",angka2d:"97",nama:"TUKANG URUT"},erek2:{angka3d:"193",angka2d:"197",nama:"SHAMPO"},kodeAlam:"BAYI KEMBAR 3",pohon:"SAMPINUR",gayaBaru:{angka:"74",nama:["BURUNG JALAK","HIDUNG BELANG"]}},
+"98":{taysen:["96","50","69","00"],nama:["PENJAGA MALAM","IKAN TONGKOL","KUPAS KELAPA","KECELAKAAN","LENGKENG","TELEVISI","UBI OBAT","TRIJATA"],pelarian:{angka:"25",nama:["KUCING","PENDETA"]},erek1:{angka3d:"146",angka2d:"98",nama:"PEDAGANG"},erek2:{angka3d:"188",angka2d:"198",nama:"JAMBANG"},kodeAlam:"POHON TUMBANG MENGHALANGI JALAN",pohon:"RESAK",gayaBaru:{angka:"73",nama:["GELATIK","PENOLONG"]}},
+"99":{taysen:["91","30","60","80"],nama:["HIDUNG BELANG","JALAK","SAWO","KODAK","MEJA","BAYI","MENENUN","ARJUNA"],pelarian:{angka:"31",nama:["BELIBIS","LELAKI"]},erek1:{angka3d:"132",angka2d:"99",nama:"GELANDANGAN"},erek2:{angka3d:"192",angka2d:"199",nama:"SANGKUR"},kodeAlam:"KETEMU TELUR DI SEMAK",pohon:"MERANTI",gayaBaru:{angka:"01",nama:["ULAR","AHLI NUJUM"]}}
+};
+
+function showTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===name));
+  ['prediksi','mimpi','pwa'].forEach(t=>{
+    const el = document.getElementById('tab-'+t);
+    if(el) el.style.display = (t===name)?'block':'none';
+  });
+}
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>showTab(t.dataset.tab));
+});
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window.__tt);
+  window.__tt = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+function contohIsi(){
+  document.getElementById('inputResult').value = '2066\n8172\n4679\n0188\n6358\n2079\n3951';
+  toast('✓ Contoh data diisi');
+}
+
+function hitungPrediksi(){
+  const raw = document.getElementById('inputResult').value.trim();
+  if(!raw){ toast('⚠️ Isi data result dulu'); return; }
+
+  let lines = raw.split(/\n|,|\s+/).map(s=>s.trim().replace(/\D/g,'')).filter(s=>s.length>=2);
+  let results = lines.map(l => l.slice(-2));
+  if(results.length < 3){ toast('⚠️ Minimal 3 baris (ideal 7)'); return; }
+
+  const order = document.getElementById('orderSel').value;
+  if(order === 'bottom') results = results.reverse();
+
+  const rIdx = [0,1,6];
+  const labels = ['R1','R2','R7'];
+  const sources = [];
+
+  rIdx.forEach((i,k)=>{
+    const r = results[i];
+    if(!r) return;
+    const d = DB[r];
+    if(!d) return;
+    const all = [...d.taysen, d.pelarian.angka];
+    sources.push({label: labels[k], ekor: r, taysen: d.taysen, pelarian: d.pelarian.angka, all, data: d});
+  });
+
+  if(!sources.length){ toast('⚠️ Data 2D tidak ada di database'); return; }
+
+  const freq = {};
+  sources.forEach(s => s.all.forEach(n => n.split('').forEach(dg => freq[dg] = (freq[dg]||0)+1)));
+
+  const sorted = Object.entries(freq).sort((a,b) => (b[1]-a[1]) || (parseInt(a[0]) - parseInt(b[0])));
+  const ranked = sorted.map(x=>x[0]);
+  '0123456789'.split('').forEach(d=>{ if(!ranked.includes(d)) ranked.push(d); });
+
+  const cb   = ranked[0];
+  const cm   = ranked.slice(0,2).join('');
+  const ai   = ranked.slice(0,4).join('');
+  const bbfs = ranked.slice(0,8).join('');
+
+  document.getElementById('srcGrid').innerHTML = sources.map(s => `
+    <div class="src-card">
+      <div class="src-head">
+        <span class="src-label">${s.label}</span>
+        <span class="src-full">Result: ${s.ekor}</span>
+      </div>
+      <div class="src-ekor">${s.ekor}</div>
+      <div class="src-sub">Ekor 2D → ${s.data.nama[0] || 'Misterius'}</div>
+      <div class="src-row">
+        <span class="src-row-tag">Taysen</span>
+        ${s.taysen.map(t=>`<span class="chip gold">${t}</span>`).join('')}
+      </div>
+      <div class="src-row">
+        <span class="src-row-tag">Pelarian</span>
+        <span class="chip green">${s.pelarian}</span>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('outCB').textContent   = cb;
+  document.getElementById('outCM').textContent   = cm;
+  document.getElementById('outAI').textContent   = ai;
+  document.getElementById('outBBFS').textContent = bbfs;
+
+  const maxFreq = sorted[0]?.[1] || 1;
+  document.getElementById('freqList').innerHTML = ranked.map((d,i)=>{
+    const c = freq[d] || 0;
+    const pct = Math.max(4, Math.round((c/maxFreq)*100));
+    let cls='low', tag='—', tagCls='low';
+    if(i<8){cls='hot';tag='BBFS';tagCls='bbfs'}
+    if(i<4){cls='mid';tag='AI';tagCls='ai'}
+    if(i<2){cls='hot';tag='CM';tagCls='cm'}
+    if(i===0){tag='CB';tagCls='cb'}
+    return `<div class="freq-row">
+      <div class="freq-d ${cls}">${d}</div>
+      <div class="freq-track"><div class="freq-fill ${cls}" style="width:${pct}%"></div></div>
+      <div class="freq-val">${c}x</div>
+      <div class="freq-tag ${tagCls}">${tag}</div>
+    </div>`;
+  }).join('');
+
+  window.__lastPred = {sources, cb, cm, ai, bbfs, ranked: ranked.map(d=>({digit:d, freq:freq[d]||0}))};
+
+  document.getElementById('prediksiOutput').style.display = 'block';
+  document.getElementById('prediksiOutput').scrollIntoView({behavior:'smooth'});
+  toast('✓ Prediksi selesai · ' + sources.length + ' sumber');
+}
+
+function copyHasil(){
+  const p = window.__lastPred;
+  if(!p){ toast('⚠️ Hitung prediksi dulu'); return; }
+  let txt = '╔══════════════════════════════════╗\n';
+  txt    += '║   🔮 PREDIKSI MISTIK · LUXURY    ║\n';
+  txt    += '╚══════════════════════════════════╝\n\n';
+  txt += '📊 SUMBER DATA:\n';
+  p.sources.forEach(s => {
+    txt += `  ${s.label} → ${s.ekor}  |  Taysen: ${s.taysen.join(' ')}  |  Pelarian: ${s.pelarian}\n`;
+  });
+  txt += '\n🎯 HASIL PREDIKSI:\n';
+  txt += `  💰 Colok Bebas : ${p.cb}\n`;
+  txt += `  💎 Colok Makau : ${p.cm}\n`;
+  txt += `  🎯 AI 4 Digit  : ${p.ai}\n`;
+  txt += `  🎲 BBFS 8 Digit: ${p.bbfs}\n\n`;
+  txt += '📈 FREKUENSI DIGIT:\n';
+  p.ranked.slice(0,10).forEach(r => txt += `  ${r.digit} → ${r.freq}x\n`);
+  txt += '\n🔮 Salam Hoki, Bosq! 🔮';
+
+  navigator.clipboard.writeText(txt)
+    .then(()=>toast('✓ Hasil disalin'))
+    .catch(()=>{
+      const ta = document.createElement('textarea'); ta.value = txt;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      toast('✓ Hasil disalin');
+    });
+}
+
+function cariData(){
+  const input = document.getElementById('searchInput').value.trim().toLowerCase();
+  const resultBox = document.getElementById('resultBox');
+  if(!input){ resultBox.innerHTML = '<div class="no-result">Masukkan angka atau nama dulu bosq!</div>'; return; }
+
+  let found = false, resultKey = '', resultData = null;
+  if(/^\d{1,3}$/.test(input)){
+    const num = input.padStart(2,'0');
+    if(DB[num]){ resultKey = num; resultData = DB[num]; found = true; }
+  } else {
+    for(const key in DB){
+      const d = DB[key];
+      const semuaNama = [...d.nama, ...d.pelarian.nama, d.erek1.nama, d.erek2.nama, d.pohon, ...d.gayaBaru.nama, d.kodeAlam];
+      if(semuaNama.some(n => n.toLowerCase() === input || n.toLowerCase().includes(input))){
+        resultKey = key; resultData = d; found = true; break;
+      }
+    }
+  }
+
+  if(!found){ resultBox.innerHTML = '<div class="no-result">❌ Data tidak ditemukan. Coba kata kunci lain bosq!</div>'; return; }
+
+  const d = resultData;
+  resultBox.innerHTML = `
+    <div class="result-card">
+      <div class="rc-head">
+        <span class="rc-head-title">Angka Erek-Erek</span>
+        <span class="rc-head-num">${resultKey}</span>
+      </div>
+      <div class="taysen-row">${d.taysen.map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="rc-body">
+        <div class="rc-sec">🎭 Deskripsi Mimpi</div>
+        <div class="tags">${d.nama.map(n=>`<span>${n}</span>`).join('')}</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-row"><span class="rc-lbl">🏃 Angka Pelarian</span><span class="rc-val gold">${d.pelarian.angka}</span></div>
+        <div class="tags" style="margin-top:6px">${d.pelarian.nama.map(n=>`<span>${n}</span>`).join('')}</div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-sec">📊 Erek-Erek</div>
+        <div class="rc-row"><span class="rc-lbl">Erek 1</span><span class="rc-val">${d.erek1.angka3d} · ${d.erek1.angka2d} (${d.erek1.nama})</span></div>
+        <div class="rc-row"><span class="rc-lbl">Erek 2</span><span class="rc-val">${d.erek2.angka3d} · ${d.erek2.angka2d} (${d.erek2.nama})</span></div>
+      </div>
+      <div class="rc-body"><div class="rc-row"><span class="rc-lbl">🌟 Kode Alam</span><span class="rc-val">${d.kodeAlam}</span></div></div>
+      <div class="rc-body"><div class="rc-row"><span class="rc-lbl">🌳 Pohon</span><span class="rc-val">${d.pohon}</span></div></div>
+      <div class="rc-body">
+        <div class="rc-row"><span class="rc-lbl">✨ Gaya Baru</span><span class="rc-val green">${d.gayaBaru.angka}</span></div>
+        <div class="tags" style="margin-top:6px">${d.gayaBaru.nama.map(n=>`<span>${n}</span>`).join('')}</div>
+      </div>
+    </div>`;
+  resultBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+/* ===== PWA BUILDER ===== */
+function getPWASettings(){
+  return {
+    name: document.getElementById('pwaName').value.trim() || 'Prediksi Mistik',
+    short: document.getElementById('pwaShort').value.trim() || 'Mistik',
+    letter: document.getElementById('pwaLetter').value.trim() || '🔮',
+    theme: document.getElementById('pwaTheme').value,
+    bg: document.getElementById('pwaBg').value
+  };
+}
+
+function drawIconOnCtx(ctx, size, settings){
+  const {letter, theme, bg} = settings;
+  ctx.clearRect(0, 0, size, size);
+  const g = ctx.createLinearGradient(0,0,size,size);
+  g.addColorStop(0, bg);
+  g.addColorStop(0.5, '#1a0a2e');
+  g.addColorStop(1, '#0d0420');
+  ctx.fillStyle = g;
+  ctx.fillRect(0,0,size,size);
+  const rg = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+  rg.addColorStop(0, 'rgba(233,196,106,0.25)');
+  rg.addColorStop(1, 'transparent');
+  ctx.fillStyle = rg;
+  ctx.fillRect(0,0,size,size);
+  ctx.strokeStyle = theme;
+  ctx.lineWidth = Math.max(2, size * 0.028);
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size*0.40, 0, Math.PI*2);
+  ctx.stroke();
+  ctx.strokeStyle = 'rgba(233,196,106,0.35)';
+  ctx.lineWidth = Math.max(1, size * 0.012);
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size*0.32, 0, Math.PI*2);
+  ctx.stroke();
+  for(let i=0; i<8; i++){
+    const a = (i/8) * Math.PI * 2 - Math.PI/2;
+    const x = size/2 + Math.cos(a) * size * 0.46;
+    const y = size/2 + Math.sin(a) * size * 0.46;
+    ctx.fillStyle = 'rgba(233,196,106,0.75)';
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(1.5, size*0.013), 0, Math.PI*2);
+    ctx.fill();
+  }
+  const fontSize = size * (letter.length > 1 ? 0.40 : 0.52);
+  ctx.font = fontSize + 'px "Segoe UI Emoji","Apple Color Emoji",serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.shadowColor = theme;
+  ctx.shadowBlur = size * 0.10;
+  ctx.fillStyle = '#fff6d8';
+  ctx.fillText(letter, size/2, size/2 + size*0.02);
+  ctx.shadowBlur = 0;
+}
+
+function updateIconPreview(){
+  const canvas = document.getElementById('iconPreview');
+  drawIconOnCtx(canvas.getContext('2d'), 140, getPWASettings());
+}
+['pwaName','pwaShort','pwaLetter','pwaTheme','pwaBg'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updateIconPreview);
+});
+updateIconPreview();
+
+function makeIconBlob(size, settings){
+  return new Promise((resolve, reject)=>{
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = size;
+    drawIconOnCtx(canvas.getContext('2d'), size, settings);
+    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Icon gagal')), 'image/png');
+  });
+}
+
+function buildManifest(settings){
+  return JSON.stringify({
+    name: settings.name,
+    short_name: settings.short,
+    description: 'Aplikasi prediksi mistik dengan analisa Taysen, Colok Bebas, AI 4 digit, dan BBFS 8 digit',
+    start_url: './',
+    scope: './',
+    display: 'standalone',
+    orientation: 'portrait',
+    background_color: settings.bg,
+    theme_color: settings.theme,
+    lang: 'id',
+    categories: ['entertainment','lifestyle'],
+    icons: [
+      { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+      { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+    ]
+  }, null, 2);
+}
+
+function buildSW(){
+  return `const CACHE = 'mistik-v1';
+const ASSETS = ['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
+
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      if(cached) return cached;
+      return fetch(e.request).then(res => {
+        if(!res || res.status !== 200 || res.type === 'opaque') return res;
+        const clone = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+        return res;
+      }).catch(() => caches.match('./index.html'));
+    })
+  );
+});
+`;
+}
+
+function triggerDownload(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 100);
+}
+
+async function downloadFile(type){
+  try {
+    const settings = getPWASettings();
+    if(type === 'manifest'){
+      const blob = new Blob([buildManifest(settings)], { type: 'application/json' });
+      triggerDownload(blob, 'manifest.json');
+      toast('✓ manifest.json terunduh');
+    } else if(type === 'sw'){
+      const blob = new Blob([buildSW()], { type: 'application/javascript' });
+      triggerDownload(blob, 'sw.js');
+      toast('✓ sw.js terunduh');
+    } else if(type === 'icon192'){
+      const blob = await makeIconBlob(192, settings);
+      triggerDownload(blob, 'icon-192.png');
+      toast('✓ icon-192.png terunduh');
+    } else if(type === 'icon512'){
+      const blob = await makeIconBlob(512, settings);
+      triggerDownload(blob, 'icon-512.png');
+      toast('✓ icon-512.png terunduh');
+    }
+  } catch(err){
+    console.error(err);
+    toast('⚠️ Error: ' + err.message);
+  }
+}
+</script>
+</body>
+</html>
