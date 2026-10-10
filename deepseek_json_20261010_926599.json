@@ -1,0 +1,19 @@
+{
+  "name": "Prediksi Mistik",
+  "short_name": "Mistik",
+  "description": "Aplikasi prediksi mistik dengan analisa Taysen, Colok Bebas, AI 4 digit, dan BBFS 8 digit",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0516",
+  "theme_color": "#e9c46a",
+  "lang": "id",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
